@@ -16,6 +16,7 @@ print "What is your name?: "
 @human_marker = rand() > 0.5 ? 'X':'0'
 @cpu_marker = @human_marker == "X" ? "0": "X"
 
+puts ""
 puts "#{@human}, you'll play #{@human_marker}'s and the #{@cpu} will play #{@cpu_marker}'s."
 
 def draw_game
@@ -41,6 +42,10 @@ def invalid_move
   puts "Invalid move! Select a space by number."
 end
 
+def winner?
+
+end
+
 def next_turn(current_player)
   if current_player == @human
     cpu_turn
@@ -60,16 +65,23 @@ def user_turn
     selection = @board.key(input)
     if valid_input?(input)
       @board[selection] = @human_marker
+      unless winner?
       next_turn(@human)
-    else
-      invalid_move #fix; not going here for string input.
+      end
     end
+      #invalid_move #fix; not going here for string input.
   end
 end
 
-def cpu_turn
+def cpu_turn #temporarily making cpu another human player
   draw_game
   puts "Computer's turn"
+  input = gets.chomp!
+  selection = @board.key(input)
+    if valid_input?(input)
+      @board[selection] = @cpu_marker
+      next_turn(@cpu)
+    end
 end
 
 if @human_marker == "X"
@@ -78,9 +90,6 @@ else
   cpu_turn
 end
 
-def winner?
-
-end
 
 def exit
   exit 0
