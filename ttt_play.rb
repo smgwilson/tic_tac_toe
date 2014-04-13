@@ -52,8 +52,8 @@ def user_turn
  puts "Your turn.  Make a move or type 'q' to quit"
  input = gets
  #if @valid_input.include?(input) 
-  @board[:a1] = @human_marker
-  draw_game
+  selection = @board.key(input.chomp)
+  @board[selection] = @human_marker
   next_turn(@human)
  # else
   #  invalid_move
