@@ -1,23 +1,19 @@
-require './ttt_game.rb'
-
-@human = ""
-@cpu = "Computer"
-@human_marker = ""
-@cpu_marker = ""
+require './ttt_state.rb'
+require './player.rb'
 
 @board = {:a1=>"1", :a2=>"4", :a3=>"7",
     :b1=>"2", :b2=>"5", :b3=>"8",
     :c1=>"3", :c2=>"6", :c3=>"9"}
 
 puts "Let's Play Tic-Tac_Toe!"
-print "What is your name?: "
-@human = gets.chomp!
-
-@human_marker = rand() > 0.5 ? 'X':'0'
-@cpu_marker = @human_marker == "X" ? "0": "X"
-
+print "What is your name?  "
+name = gets.chomp!
+@human = Player.new(name)
+@human.marker = assign(marker)
+@cpu = Player.new("Computer")
+@cpu.marker = @human_marker == "X" ? "0": "X"
 puts ""
-puts "#{@human}, you'll play #{@human_marker}'s and the #{@cpu} will play #{@cpu_marker}'s."
+puts "#{@human.name}, you'll play #{@human.marker}'s and the #{@cpu} will play #{@cpu_marker}'s."
 
 def draw_game
   puts ""
@@ -36,6 +32,9 @@ end
 def valid_input?(input)
   valid = (0..9).to_a
   valid.include?(input.to_i)
+end
+
+def valid_move?(input)
 end
 
 def invalid_move
@@ -63,7 +62,7 @@ def user_turn
     exit
   else
     selection = @board.key(input)
-    if valid_input?(input)
+    if valid_input?(input) && valid_move?(selection)
       @board[selection] = @human_marker
       unless winner?
       next_turn(@human)
@@ -94,4 +93,3 @@ end
 def exit
   exit 0
 end
-
