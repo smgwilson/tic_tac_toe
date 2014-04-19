@@ -1,12 +1,18 @@
+require './ttt_state.rb'
+
 class Player
-  
-  attr_accessor :marker
-  
-  def initialize (name)
-    @name = name
+  def initialize (mark)
+    @mark = mark
   end
-  
-  def assign_marker
-    rand > 0.5 ? 'X':'0'
+
+  def choose_move(board) #for human player
+    puts "Your turn.  Make a move or type 'q' to quit"
+    input = gets.chomp!
+    if input == "q"
+      puts "Bye for now!"
+    else
+      return input
+    end
   end
+
 end

@@ -17,7 +17,7 @@ class TttState
   ['a3', 'b2', 'c1']
   ]
   
-  def draw_board
+  def render_board
     puts ""
     puts ""
     puts " #{@board[:a1]}|#{@board[:b1]}|#{@board[:c1]}"
@@ -27,5 +27,19 @@ class TttState
     puts " #{@board[:a3]}|#{@board[:b3]}|#{@board[:c3]}"
     puts ""
   end
-
+  
+ def winner?
+   # returns true if a player has 3 in a row, any direction
+ end
+ 
+ def current_player
+    # returns the player whose turn it is now
+ end
+ 
+ def apply_move (input)
+   # calls Player.choose_move and updates the state of the board
+    selection = @board.key(input)
+    @board[selection] = Player.mark
+ end
+ 
 end
