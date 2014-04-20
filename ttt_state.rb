@@ -1,7 +1,5 @@
 class TttState
 
-  attr_accessor :board
-
   @board = {:a1=>"1", :a2=>"4", :a3=>"7",
     :b1=>"2", :b2=>"5", :b3=>"8",
     :c1=>"3", :c2=>"6", :c3=>"9"}
