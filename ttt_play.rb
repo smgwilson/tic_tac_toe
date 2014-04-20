@@ -50,7 +50,7 @@ end
     puts ""
   end
   
-def winner?
+def winner?(mark)
   return false
 end
 
@@ -69,6 +69,7 @@ def play_game (human_plays)
     puts "Value of board_full? is #{board_full?}\n"
     puts "X:#{@board.values.count("X")}"
     puts "O:#{@board.values.count("O")}"
+    puts "Wins: #{@wins.each { |x| puts x }}"
     while !winner? && !board_full?
       make_move(human_plays)
     end
