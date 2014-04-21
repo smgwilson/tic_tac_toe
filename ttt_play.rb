@@ -50,7 +50,7 @@ end
     puts ""
   end
   
-def winner?(mark)
+def winner?
   return false
 end
 
