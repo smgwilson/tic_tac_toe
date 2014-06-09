@@ -1,4 +1,4 @@
-class TttLogic
+class TttBoard
   
   def initialize
     @board = Array.new(9)

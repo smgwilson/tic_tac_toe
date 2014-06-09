@@ -1,18 +1,12 @@
-require './board_game_player.rb'
+require './ttt_player.rb'
 require './ttt_logic.rb'
 
 class TicTacToe
   
   def initialize
-    marker1 = rand() > 0.5 ? 'X':'O'
-    marker2 = marker1 == 'X'? 'O':'X'
-    @human = BoardGamePlayer.new(marker1) #random mark assignment for human
-    @cpu = BoardGamePlayer.new(marker2) #computer gets remaining mark
-    
     @valid = (1..9).to_a.collect!{|i|i.to_s}
-    
     $quit = false
-    
+    @turn = 0
     #pass human mark to initialize game
     game_init(@human.mark)  
   end
@@ -38,6 +32,20 @@ class TicTacToe
     exit 0
   end
   
+  def make_move(player)
+    player.place_mark(self)
+  end
+
+def turns(turn)
+  turn + 1
+end
+
+def check_win (array)
+  if array.uniq.length == 1
+    return array[0]
+  end
+end
+ 
 end
 
 game = TicTacToe.new
